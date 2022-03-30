@@ -8,7 +8,7 @@ import {Request,Response} from 'express';
 dotenv.config()
 
 let secret = process.env.secret1 || "ssankdlkdkajllshlahfdfhu";
-
+let date = new Date();
 export default class Admin{
     static addevent=async(request:Request,response:Response)=>{
         try {
@@ -52,6 +52,8 @@ export default class Admin{
     }
 
     static temp = async(request:Request,response:Response)=>{
+        console.log(date)
+        console.log(new Date())
         response.send("HIT");
     }
 

@@ -21,6 +21,7 @@ const panels_1 = __importDefault(require("../../miscellaneous/panels"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 let secret = process.env.secret1 || "ssankdlkdkajllshlahfdfhu";
+let date = new Date();
 class Admin {
 }
 exports.default = Admin;
@@ -64,6 +65,8 @@ Admin.login = (request, response) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 Admin.temp = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(date);
+    console.log(new Date());
     response.send("HIT");
 });
 Admin.getImg = (request, response) => __awaiter(void 0, void 0, void 0, function* () {

@@ -14,7 +14,7 @@ router.post('/createadmin',validate(val.signup),verifyAdmin,Admin.createAdmin);
 router.post('/addevent',validate(val.event),verifyAdmin,upload.single('file'),Admin.addevent);
 router.post('/login',validate(val.login),Admin.login);
 router.get('/getimg/:id',Admin.getImg);
-router.post('/temp',Admin.temp);
+router.get('/temp',Admin.temp);
 router.post('/verifyadmin',verifyAdmin,Admin.verifyAdmin);
 router.post('/deleteevent',Admin.deleteEvent);
 

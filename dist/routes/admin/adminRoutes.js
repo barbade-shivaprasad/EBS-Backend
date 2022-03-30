@@ -15,7 +15,7 @@ router.post('/createadmin', (0, validate_1.default)(val.signup), verifyAdmin_1.d
 router.post('/addevent', (0, validate_1.default)(val.event), verifyAdmin_1.default, upload_1.upload.single('file'), index_1.default.addevent);
 router.post('/login', (0, validate_1.default)(val.login), index_1.default.login);
 router.get('/getimg/:id', index_1.default.getImg);
-router.post('/temp', index_1.default.temp);
+router.get('/temp', index_1.default.temp);
 router.post('/verifyadmin', verifyAdmin_1.default, index_1.default.verifyAdmin);
 router.post('/deleteevent', index_1.default.deleteEvent);
 exports.default = router;
