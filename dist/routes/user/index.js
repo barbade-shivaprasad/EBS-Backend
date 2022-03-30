@@ -20,6 +20,7 @@ const otpModel_1 = __importDefault(require("../../models/otpModel"));
 const adminModel_1 = __importDefault(require("../../models/adminModel"));
 const qrcode_1 = __importDefault(require("qrcode"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const indianDate_1 = __importDefault(require("../../miscellaneous/indianDate"));
 dotenv_1.default.config();
 let secret = process.env.secret || "ssankdlkdkajllshlahfdfhu";
 class User {
@@ -255,12 +256,8 @@ class User {
     static getOnGoingEvents(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("Shiv");
-                console.log(new Date());
-                let pipeline = [{ $match: { date: new Date() } }];
+                let pipeline = [{ $match: { date: new Date((0, indianDate_1.default)()) } }];
                 let res = yield eventModel_1.default.aggregate(pipeline);
-                res.push(new Date());
-                console.log(res);
                 response.send(res);
                 // response.send("shiv")
             }
@@ -272,7 +269,7 @@ class User {
     static getPastEvents(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let pipeline = [{ $match: { date: { $lt: new Date() } } }];
+                let pipeline = [{ $match: { date: { $lt: new Date((0, indianDate_1.default)()) } } }];
                 let res = yield eventModel_1.default.aggregate(pipeline);
                 response.send(res);
             }
@@ -284,7 +281,7 @@ class User {
     static getUpcomingEvents(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let pipeline = [{ $match: { date: { $gt: new Date() } } }];
+                let pipeline = [{ $match: { date: { $gt: new Date((0, indianDate_1.default)()) } } }];
                 let res = yield eventModel_1.default.aggregate(pipeline);
                 response.send(res);
             }

@@ -9,6 +9,7 @@ import qrCode from "qrcode";
 import dotenv from 'dotenv';
 import IOtp from '../../interfaces/IOtp'
 import {Request,Response} from 'express'
+import getIndianTime from "../../miscellaneous/indianDate";
 
 dotenv.config();
 let secret = process.env.secret || "ssankdlkdkajllshlahfdfhu";
@@ -262,12 +263,9 @@ export default class User{
 
     static async getOnGoingEvents(request:Request,response:Response){
         try {
-            console.log("Shiv")
-            console.log(new Date())
-            let pipeline = [{ $match: { date: new Date() } }];
+
+            let pipeline = [{ $match: { date: new Date(getIndianTime()) } }];
             let res = await eventModel.aggregate(pipeline);
-            res.push(new Date())
-            console.log(res)
             response.send(res);
             // response.send("shiv")
         }
@@ -277,7 +275,7 @@ export default class User{
     }
     static async getPastEvents(request:Request,response:Response){
         try {
-            let pipeline = [{ $match: { date: { $lt: new Date() } } }];
+            let pipeline = [{ $match: { date: { $lt: new Date(getIndianTime()) } } }];
             let res = await eventModel.aggregate(pipeline);
             response.send(res);
         }
@@ -288,7 +286,7 @@ export default class User{
     
     static async getUpcomingEvents(request:Request,response:Response){
         try {
-            let pipeline = [{ $match: { date: { $gt: new Date() } } }];
+            let pipeline = [{ $match: { date: { $gt: new Date(getIndianTime()) } } }];
             let res = await eventModel.aggregate(pipeline);
             response.send(res);
         }
