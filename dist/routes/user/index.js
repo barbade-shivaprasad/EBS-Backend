@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const eventModel_1 = __importDefault(require("../../models/eventModel"));
-const date_and_time_1 = __importDefault(require("date-and-time"));
 const userModel_1 = __importDefault(require("../../models/userModel"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const mailer_1 = __importDefault(require("../../mailer"));
@@ -23,8 +22,6 @@ const qrcode_1 = __importDefault(require("qrcode"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 let secret = process.env.secret || "ssankdlkdkajllshlahfdfhu";
-const now = new Date();
-const date = date_and_time_1.default.format(now, "YYYY-MM-DD");
 class User {
     static sendMail(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -259,10 +256,10 @@ class User {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 console.log("Shiv");
-                console.log(new Date(date));
-                let pipeline = [{ $match: { date: new Date(date) } }];
+                console.log(new Date());
+                let pipeline = [{ $match: { date: new Date() } }];
                 let res = yield eventModel_1.default.aggregate(pipeline);
-                res.push(new Date(date));
+                res.push(new Date());
                 console.log(res);
                 response.send(res);
                 // response.send("shiv")
@@ -275,7 +272,7 @@ class User {
     static getPastEvents(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let pipeline = [{ $match: { date: { $lt: new Date(date) } } }];
+                let pipeline = [{ $match: { date: { $lt: new Date() } } }];
                 let res = yield eventModel_1.default.aggregate(pipeline);
                 response.send(res);
             }
@@ -287,7 +284,7 @@ class User {
     static getUpcomingEvents(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let pipeline = [{ $match: { date: { $gt: new Date(date) } } }];
+                let pipeline = [{ $match: { date: { $gt: new Date() } } }];
                 let res = yield eventModel_1.default.aggregate(pipeline);
                 response.send(res);
             }

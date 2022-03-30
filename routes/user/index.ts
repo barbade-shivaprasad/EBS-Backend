@@ -12,8 +12,7 @@ import {Request,Response} from 'express'
 
 dotenv.config();
 let secret = process.env.secret || "ssankdlkdkajllshlahfdfhu";
-const now = new Date();
-const date = dat.format(now, "YYYY-MM-DD");
+
 
 export default class User{
     static async sendMail(request:Request,response:Response){
@@ -85,8 +84,6 @@ export default class User{
              if(res)
              if(res.expire > currentTime){
                 
-                 
-                     
                      await otpModel.deleteMany({email:request.body.email})
                     response.send('Success');
             }
@@ -266,10 +263,10 @@ export default class User{
     static async getOnGoingEvents(request:Request,response:Response){
         try {
             console.log("Shiv")
-            console.log(new Date(date))
-            let pipeline = [{ $match: { date: new Date(date) } }];
+            console.log(new Date())
+            let pipeline = [{ $match: { date: new Date() } }];
             let res = await eventModel.aggregate(pipeline);
-            res.push(new Date(date))
+            res.push(new Date())
             console.log(res)
             response.send(res);
             // response.send("shiv")
@@ -280,7 +277,7 @@ export default class User{
     }
     static async getPastEvents(request:Request,response:Response){
         try {
-            let pipeline = [{ $match: { date: { $lt: new Date(date) } } }];
+            let pipeline = [{ $match: { date: { $lt: new Date() } } }];
             let res = await eventModel.aggregate(pipeline);
             response.send(res);
         }
@@ -291,7 +288,7 @@ export default class User{
     
     static async getUpcomingEvents(request:Request,response:Response){
         try {
-            let pipeline = [{ $match: { date: { $gt: new Date(date) } } }];
+            let pipeline = [{ $match: { date: { $gt: new Date() } } }];
             let res = await eventModel.aggregate(pipeline);
             response.send(res);
         }
