@@ -7,7 +7,7 @@ function validate(schema) {
             next();
         }).catch((err) => {
             console.log(err);
-            response.send(err.message);
+            response.status(202).send(err.message);
         });
     };
 }

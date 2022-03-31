@@ -195,7 +195,7 @@ class User {
             }
             catch (error) {
                 console.log(error);
-                response.status(200).send(error.message);
+                response.status(202).send(error.message);
             }
         });
     }
@@ -209,7 +209,7 @@ class User {
                     throw new Error("failure");
             }
             catch (error) {
-                response.status(200).send("failure");
+                response.status(202).send("failure");
             }
         });
     }
@@ -297,7 +297,7 @@ class User {
                 response.send(res);
             }
             catch (error) {
-                response.status(200).send(error.message);
+                response.status(202).send(error.message);
             }
         });
     }

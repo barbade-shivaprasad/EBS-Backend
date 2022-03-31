@@ -27,9 +27,9 @@ export default class schema{
 
     changeEvent = joi.object().keys({
         eventId: joi.string().required(),
-        isRegistered: joi.string().required(),
-        isCancelled: joi.string().required(),
-        isAttended: joi.string().required()
+        isRegistered: joi.boolean().required(),
+        isCancelled: joi.boolean().required(),
+        isAttended: joi.boolean().required()
     });
 
 }

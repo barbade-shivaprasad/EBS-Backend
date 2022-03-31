@@ -16,7 +16,7 @@ function verify(request, responsoe, next) {
         next();
     }
     catch (error) {
-        responsoe.send("You are not authenticated please login/signup");
+        responsoe.status(202).send("You are not authenticated please login/signup");
     }
 }
 exports.default = verify;

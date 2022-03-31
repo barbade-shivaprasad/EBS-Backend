@@ -6,13 +6,11 @@ import panels from '../../miscellaneous/panels'
 import dotenv from 'dotenv'
 import {Request,Response} from 'express';
 dotenv.config()
-
 let secret = process.env.secret1 || "ssankdlkdkajllshlahfdfhu";
 let date = new Date();
 export default class Admin{
     static addevent=async(request:Request,response:Response)=>{
         try {
-            
             let count = await eventModel.count({});
             request.body.eventId = panels(request.body.organizedBy)+ "" + (count + 1);
             request.body.seatsFilled = 0;

@@ -17,7 +17,7 @@ dotenv.config();
 
     } catch (error) {
 
-        responsoe.send("You are not authenticated please login/signup");
+        responsoe.status(202).send("You are not authenticated please login/signup");
     }
     
 }

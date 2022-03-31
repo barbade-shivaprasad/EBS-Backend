@@ -12,7 +12,7 @@ export default function validate(schema:any){
         }).catch((err:any)=>{
     
             console.log(err)
-            response.send(err.message)
+            response.status(202).send(err.message)
         })
     }
 }

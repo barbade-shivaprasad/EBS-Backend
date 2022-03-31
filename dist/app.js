@@ -16,7 +16,7 @@ mongoose_1.default.connect(url)
     console.log(err.message);
 });
 app.use(express_1.default.json());
-app.use(express_1.default.urlencoded());
+app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)(({ origin: ['http://localhost:3000', 'https://realshiva.rocks', 'http://realshiva.rocks', 'https://realshiva.rocks:3000', 'http://146.190.8.10:3000', 'http://192.168.137.61:3000', 'http://192.168.0.181:3000', 'http://192.168.30.134:3000', 'http://192.168.23.16:3000', 'http://192.168.43.207:3000', 'http://192.168.30.5:3000', 'http://192.168.6.42:3000', 'http://192.168.4.43:3000'], credentials: true })));
 app.use((0, cookie_parser_1.default)());
 app.use('/', routes_1.default);

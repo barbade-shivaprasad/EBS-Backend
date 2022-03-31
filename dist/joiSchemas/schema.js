@@ -28,9 +28,9 @@ class schema {
         });
         this.changeEvent = joi_1.default.object().keys({
             eventId: joi_1.default.string().required(),
-            isRegistered: joi_1.default.string().required(),
-            isCancelled: joi_1.default.string().required(),
-            isAttended: joi_1.default.string().required()
+            isRegistered: joi_1.default.boolean().required(),
+            isCancelled: joi_1.default.boolean().required(),
+            isAttended: joi_1.default.boolean().required()
         });
     }
 }

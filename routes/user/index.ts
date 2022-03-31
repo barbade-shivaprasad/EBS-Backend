@@ -207,7 +207,7 @@ export default class User{
         }
         catch (error:any) {
             console.log(error);
-            response.status(200).send(error.message);
+            response.status(202).send(error.message);
         }
     }
     static async changeIsCancelled(request:Request,response:Response){
@@ -219,7 +219,7 @@ export default class User{
                 throw new Error("failure");
         }
         catch (error:any) {
-            response.status(200).send("failure");
+            response.status(202).send("failure");
         }
     }
     static async addEvent(request:Request,response:Response){
@@ -301,7 +301,7 @@ export default class User{
             response.send(res);
         }
         catch (error:any) {
-            response.status(200).send(error.message);
+            response.status(202).send(error.message);
         }   
     }
 

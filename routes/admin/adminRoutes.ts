@@ -11,7 +11,7 @@ const router: IRouter = Router();
 const val = new schema();
 
 router.post('/createadmin',validate(val.signup),verifyAdmin,Admin.createAdmin);
-router.post('/addevent',validate(val.event),verifyAdmin,upload.single('file'),Admin.addevent);
+router.post('/addevent',upload.single('file'),Admin.addevent);
 router.post('/login',validate(val.login),Admin.login);
 router.get('/getimg/:id',Admin.getImg);
 router.get('/temp',Admin.temp);
