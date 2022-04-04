@@ -51,6 +51,7 @@ class User {
                 }
                 let res = yield mailer_1.default.mailer1(`${otp}`, request.body.email);
                 let otpDoc = new otpModel_1.default(temp);
+                console.log(res);
                 if (res.accepted != undefined)
                     if (res.accepted.length != 0) {
                         yield otpModel_1.default.deleteMany({ email: request.body.email });

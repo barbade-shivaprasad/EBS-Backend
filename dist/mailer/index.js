@@ -28,19 +28,23 @@ class mailer {
                 service: 'gmail',
                 port: 587,
                 secure: false,
+                pool: true,
+                maxConnections: 3000,
+                maxMessages: 5,
                 auth: {
-                    user: 'ofood.customerservice@gmail.com',
+                    user: 'sgc.rgukt@gmail.com',
                     pass: 'rgukt123'
                 }
             });
             let mailOptions = {
-                from: 'ofood.customerservice@gmail.com',
+                from: 'sgc.rgukt@gmail.com',
                 to: recepient,
                 subject: 'OTP for verification',
-                text: `${otp} is your otp for verification \n\n Thank you.\n\n Regards,\n Ofood.`
+                text: `${otp} is your otp for verification \n\n Thank you.\n\n Regards,\n SGC.`
             };
             try {
                 let info = yield transporter.sendMail(mailOptions);
+                transporter.close();
                 info.statusCode = 200;
                 return info;
             }
@@ -64,15 +68,18 @@ mailer.mailer = (payload, recepient, url) => __awaiter(void 0, void 0, void 0, f
     const htmlToSend = template(replacements);
     let transporter = nodemailer_1.default.createTransport({
         service: 'gmail',
+        pool: true,
         port: 587,
         secure: false,
+        maxConnections: 3000,
+        maxMessages: 5,
         auth: {
-            user: 'ofood.customerservice@gmail.com',
+            user: 'sgc.rgukt@gmail.com',
             pass: 'rgukt123'
         }
     });
     let mailOptions = {
-        from: 'ofood.customerservice@gmail.com',
+        from: 'sgc.rgukt@gmail.com',
         to: recepient,
         subject: 'Event Registration',
         html: htmlToSend,
@@ -81,11 +88,17 @@ mailer.mailer = (payload, recepient, url) => __awaiter(void 0, void 0, void 0, f
                 filename: "qrcode",
                 path: url,
                 cid: "img123"
+            },
+            {
+                filename: "banner",
+                path: path_1.default.join(__dirname, 'img.jpg'),
+                cid: "img123"
             }
         ]
     };
     try {
         let info = yield transporter.sendMail(mailOptions);
+        transporter.close();
         info.statusCode = 200;
         return info;
     }

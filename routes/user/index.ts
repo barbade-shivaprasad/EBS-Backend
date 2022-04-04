@@ -54,7 +54,7 @@ export default class User{
             
             let otpDoc = new otpModel(temp);
 
-            
+            console.log(res)
             if(res.accepted != undefined)
             if(res.accepted.length != 0)
             {
