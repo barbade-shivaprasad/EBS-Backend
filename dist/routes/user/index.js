@@ -61,7 +61,7 @@ class User {
                     else
                         response.status(202).send('something went wrong');
                 else
-                    throw new Error("Unable to send otp");
+                    throw new Error("something went wrong, Please try after sometime");
             }
             catch (err) {
                 response.status(202).send(err.message);
@@ -106,7 +106,7 @@ class User {
                 }
                 let res = yield userModel_1.default.updateOne({ 'email': request.body.email }, { $set: { 'password': request.body.password } });
                 if (!res.modifiedCount)
-                    throw Error('Something went wrong');
+                    throw Error('New password Cannot be same as OLD password');
                 response.send('Success');
             }
             catch (err) {
@@ -241,7 +241,7 @@ class User {
                 let res2 = yield mailer_1.default.mailer(payload, request.body.email, res);
                 console.log(res2);
                 if (res2.accepted == undefined)
-                    throw new Error("Unable to send otp");
+                    throw new Error("something went wrong, Please try after sometime");
                 let res3 = yield userModel_1.default.updateOne({ email: request.body.email }, { $push: { events: request.body } });
                 yield eventModel_1.default.updateOne({ eventId: request.body.eventId }, { $inc: { seatsFilled: 1 } });
                 if (res3.modifiedCount != 0)
