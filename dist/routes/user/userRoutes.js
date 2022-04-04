@@ -22,7 +22,7 @@ router.post('/getevent', index_1.default.getEventDetails);
 router.post('/signup', (0, validate_1.default)(val.signup), index_1.default.signUp);
 router.post('/sendmail', index_1.default.sendMail);
 router.post('/changepassword', index_1.default.changepassword);
-router.post('verifyotp', index_1.default.verifyotp);
+router.post('/verifyotp', index_1.default.verifyotp);
 router.post('/login', (0, validate_1.default)(val.login), index_1.default.login);
 router.post('/verifyuser', verify_1.default, admin_1.default.verifyAdmin);
 router.post('/userdetails', verify_1.default, index_1.default.getUserDetails);

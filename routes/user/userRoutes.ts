@@ -19,7 +19,7 @@ router.post('/getevent',user.getEventDetails);
 router.post('/signup',validate(val.signup),user.signUp);
 router.post('/sendmail',user.sendMail);
 router.post('/changepassword',user.changepassword);
-router.post('verifyotp',user.verifyotp);
+router.post('/verifyotp',user.verifyotp);
 router.post('/login',validate(val.login),user.login)
 router.post('/verifyuser',verify,Admin.verifyAdmin);
 router.post('/userdetails',verify,user.getUserDetails);
